@@ -12,7 +12,7 @@ struct Library: View {
     
     @State var tracks = UserDefaults.standard.savedTracks()
     @State private var showingAlert = false
-    @State private var track: SearchViewModel.Cell!
+    @State private var track: SearchViewModel.Cell?
     
     var tabBarDelegate: MainTabBarControllerDelegate?
     
@@ -22,9 +22,10 @@ struct Library: View {
                 GeometryReader { geometry in
                     HStack(spacing: 20) {
                         Button {
-                            print("12345")
-                            self.track = self.tracks[0]
-                            self.tabBarDelegate?.maximizeTrackDetailController(viewModel: self.track)
+                            if !tracks.isEmpty {
+                                self.track = self.tracks[0]
+                                self.tabBarDelegate?.maximizeTrackDetailController(viewModel: self.track)
+                            }
                         } label: {
                             Image(systemName: "play.fill")
                                 .frame(width: geometry.size.width / 2 - 10 , height: 50)
@@ -71,7 +72,7 @@ struct Library: View {
                 }
             }.actionSheet(isPresented: $showingAlert, content: {
                 ActionSheet(title: Text("Are you sure you want to delete this track?"), buttons: [.destructive(Text("Delete"), action: {
-                    self.delete(track: self.track)
+                    self.delete(track: self.track!)
                 }),.cancel()
                 ])
             })
@@ -130,7 +131,7 @@ struct Library_Previews: PreviewProvider {
 extension Library: TrackMovingDelegate {
     func moveBackForPreviousTrack() -> SearchViewModel.Cell? {
         
-        let index = tracks.firstIndex(of: track)
+        let index = tracks.firstIndex(of: track!)
         guard let myIndex = index else { return nil }
         var previousTrack: SearchViewModel.Cell
         if myIndex - 1 == -1 {
@@ -144,7 +145,7 @@ extension Library: TrackMovingDelegate {
     
     func moveForwardForNextTrack() -> SearchViewModel.Cell? {
 
-        let index = tracks.firstIndex(of: track)
+        let index = tracks.firstIndex(of: track!)
         guard let myIndex = index else { return nil }
         var nextTrack: SearchViewModel.Cell
         if myIndex + 1 == tracks.count {
