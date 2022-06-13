@@ -26,7 +26,11 @@ Player contains three screens:
 - To open detail screen with all song information tap on a cell.
 - You can delete a song by swiping or long pressing a cell.
 
-<img width="320" src="https://user-images.githubusercontent.com/77533590/173417611-f27e1124-2c3c-4b9b-b0ff-6263dcadbdbf.mp4">     <img width="320" src="https://user-images.githubusercontent.com/77533590/173417728-72e0d665-5220-4399-b445-4ec54340c309.mp4">  
+<img width="320" src="https://user-images.githubusercontent.com/77533590/173417611-f27e1124-2c3c-4b9b-b0ff-6263dcadbdbf.mp4">     <img width="320" src="https://user-images.githubusercontent.com/77533590/173452038-2e2309bf-f7dd-468d-a3cd-15c472b3b6a2.mp4">  
+
+
+
+
 
 
 
